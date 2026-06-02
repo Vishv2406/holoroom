@@ -65,17 +65,36 @@ function GridOverlay() {
 
 export function SceneCanvas() {
   const orbitRef = useRef(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    // Prevent canvas from blocking pointer events outside 3D model areas
+    const handleCanvasPointerDown = (e: PointerEvent) => {
+      // Only allow canvas to handle events if clicking on actual 3D objects
+      // Otherwise, let events pass through to UI
+      if (!e.target) return;
+    };
+
+    if (canvasRef.current) {
+      canvasRef.current.addEventListener('pointerdown', handleCanvasPointerDown);
+      return () => {
+        canvasRef.current?.removeEventListener('pointerdown', handleCanvasPointerDown);
+      };
+    }
+  }, []);
 
   return (
     <Canvas
+      ref={canvasRef}
       camera={{ position: [0, 20, 22], fov: 55, near: 0.1, far: 200 }}
       shadows
       gl={{ antialias: true, toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.2 }}
-      style={{ background: 'transparent', pointerEvents: 'auto' }}
-      onCreated={(state) => {
-        // Allow pointer events to pass through to UI when hovering over empty space
-        const canvas = state.gl.domElement;
-        canvas.style.touchAction = 'auto';
+      style={{ 
+        background: 'transparent', 
+        pointerEvents: 'none',
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
       }}
     >
       {/* Background */}
