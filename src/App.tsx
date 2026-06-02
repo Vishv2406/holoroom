@@ -46,48 +46,47 @@ export default function App() {
             className="fixed inset-0"
             style={{ pointerEvents: 'auto' }}
           >
-            {/* 3D Canvas — full screen background */}
+            {/* 3D Canvas — full screen background with pointerEvents disabled */}
             <div className="absolute inset-0" style={{ zIndex: 1, pointerEvents: 'none' }}>
               <SceneCanvas />
             </div>
 
-            {/* UI Overlay - All UI elements are absolutely positioned and clickable */}
-            {/* TopBar */}
+            {/* TopBar - Fixed at top with limited height */}
             <div style={{ position: 'fixed', top: 0, left: 0, right: 0, height: '60px', zIndex: 50, pointerEvents: 'auto' }}>
               <TopBar />
             </div>
             
-            {/* LeftSidebar */}
+            {/* LeftSidebar - Fixed on left side */}
             <div style={{ position: 'fixed', left: 0, top: '60px', bottom: 0, width: '280px', zIndex: 40, pointerEvents: 'auto' }}>
               <LeftSidebar />
             </div>
 
-            {/* Panels that appear on the right - Energy Panel */}
+            {/* Energy Panel - Positioned on the right of left sidebar */}
             <div style={{ position: 'fixed', left: '280px', top: '60px', bottom: 0, zIndex: 45, pointerEvents: 'auto' }}>
               <EnergyPanel />
             </div>
 
-            {/* Panels that appear on the right - Automation */}
+            {/* Automation Panel - Positioned on the right of left sidebar */}
             <div style={{ position: 'fixed', left: '280px', top: '60px', bottom: 0, zIndex: 45, pointerEvents: 'auto' }}>
               <AutomationBuilder />
             </div>
 
-            {/* Right device/room panel */}
+            {/* Right Panel - Fixed on right side */}
             <div style={{ position: 'fixed', right: 0, top: '60px', bottom: 0, zIndex: 50, pointerEvents: 'auto' }}>
               <RightPanel />
             </div>
 
-            {/* Quick camera controls - bottom right */}
+            {/* Quick Controls - Bottom right corner */}
             <div style={{ position: 'fixed', bottom: '24px', right: '24px', zIndex: 30, pointerEvents: 'auto' }}>
               <QuickControls />
             </div>
 
-            {/* Overlays - Notifications */}
-            <div style={{ position: 'fixed', top: 0, right: 0, zIndex: 60, pointerEvents: 'auto' }}>
+            {/* Notifications Panel - Top right corner */}
+            <div style={{ position: 'fixed', top: '68px', right: '14px', zIndex: 60, pointerEvents: 'auto' }}>
               <NotificationsPanel />
             </div>
 
-            {/* Overlays - Settings */}
+            {/* Settings Modal - Center of screen */}
             <div style={{ position: 'fixed', inset: 0, zIndex: 65, pointerEvents: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <SettingsPage />
             </div>
