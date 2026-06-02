@@ -45,38 +45,53 @@ export default function App() {
               <SceneCanvas />
             </div>
 
-            {/* All UI elements with HIGH z-index and pointerEvents enabled */}
+            {/* TopBar - ONLY at top, NOT covering whole screen */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
-              className="fixed inset-0"
-              style={{ pointerEvents: 'auto', zIndex: 10, display: 'flex', flexDirection: 'column' }}
+              style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                right: 0,
+                height: '60px',
+                zIndex: 50,
+                pointerEvents: 'auto',
+              }}
             >
-              {/* TopBar */}
-              <div style={{ height: '60px', zIndex: 50, pointerEvents: 'auto', flexShrink: 0 }}>
-                <TopBar />
-              </div>
-
-              {/* Main content area */}
-              <div style={{ display: 'flex', flex: 1, pointerEvents: 'auto', zIndex: 10 }}>
-                {/* LeftSidebar */}
-                <div style={{ width: '280px', zIndex: 40, pointerEvents: 'auto', flexShrink: 0 }}>
-                  <LeftSidebar />
-                </div>
-
-                {/* Center area for Energy/Automation panels */}
-                <div style={{ flex: 1, zIndex: 45, pointerEvents: 'auto', position: 'relative' }}>
-                  <EnergyPanel />
-                  <AutomationBuilder />
-                </div>
-
-                {/* RightPanel */}
-                <div style={{ width: 'auto', zIndex: 50, pointerEvents: 'auto', flexShrink: 0 }}>
-                  <RightPanel />
-                </div>
-              </div>
+              <TopBar />
             </motion.div>
+
+            {/* Main Layout - Flexbox below TopBar */}
+            <div
+              style={{
+                position: 'fixed',
+                top: '60px',
+                left: 0,
+                right: 0,
+                bottom: 0,
+                display: 'flex',
+                zIndex: 10,
+                pointerEvents: 'auto',
+              }}
+            >
+              {/* LeftSidebar */}
+              <div style={{ width: '280px', zIndex: 40, pointerEvents: 'auto', position: 'relative' }}>
+                <LeftSidebar />
+              </div>
+
+              {/* Center area for Energy/Automation panels */}
+              <div style={{ flex: 1, zIndex: 45, pointerEvents: 'auto', position: 'relative' }}>
+                <EnergyPanel />
+                <AutomationBuilder />
+              </div>
+
+              {/* RightPanel */}
+              <div style={{ zIndex: 50, pointerEvents: 'auto', position: 'relative' }}>
+                <RightPanel />
+              </div>
+            </div>
 
             {/* Quick Controls - Bottom right */}
             <div style={{ position: 'fixed', bottom: '24px', right: '24px', zIndex: 30, pointerEvents: 'auto' }}>
