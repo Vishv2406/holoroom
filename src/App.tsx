@@ -52,32 +52,32 @@ export default function App() {
             </div>
 
             {/* UI Overlay - All UI elements with pointer-events-auto */}
-            <div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 10 }}>
+            <div style={{ position: 'fixed', inset: 0, pointerEvents: 'auto', zIndex: 10 }}>
               <TopBar />
             </div>
             
-            <div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 20 }}>
+            <div style={{ position: 'fixed', inset: 0, pointerEvents: 'auto', zIndex: 20 }}>
               <LeftSidebar />
             </div>
 
             {/* Panels that appear on the right */}
-            <div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 30 }}>
+            <div style={{ position: 'fixed', inset: 0, pointerEvents: 'auto', zIndex: 30 }}>
               <EnergyPanel />
               <AutomationBuilder />
             </div>
 
             {/* Right device/room panel */}
-            <div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 40 }}>
+            <div style={{ position: 'fixed', inset: 0, pointerEvents: 'auto', zIndex: 40 }}>
               <RightPanel />
             </div>
 
             {/* Quick camera controls */}
-            <div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 25 }}>
+            <div style={{ position: 'fixed', inset: 0, pointerEvents: 'auto', zIndex: 25 }}>
               <QuickControls />
             </div>
 
             {/* Overlays */}
-            <div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 50 }}>
+            <div style={{ position: 'fixed', inset: 0, pointerEvents: 'auto', zIndex: 50 }}>
               <NotificationsPanel />
               <SettingsPage />
             </div>
