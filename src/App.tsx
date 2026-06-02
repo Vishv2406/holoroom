@@ -44,40 +44,41 @@ export default function App() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
             className="fixed inset-0"
-            style={{ pointerEvents: 'auto' }}
+            style={{ pointerEvents: 'none' }}
           >
-            {/* 3D Canvas — full screen background */}
+            {/* 3D Canvas — full screen background with pointer events disabled initially */}
             <div className="absolute inset-0" style={{ zIndex: 1, pointerEvents: 'auto' }}>
               <SceneCanvas />
             </div>
 
-            {/* UI Overlay - All UI elements with pointer-events-auto */}
-            <div style={{ position: 'fixed', inset: 0, pointerEvents: 'auto', zIndex: 10 }}>
+            {/* UI Overlay - TopBar always clickable */}
+            <div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 10 }}>
               <TopBar />
             </div>
             
-            <div style={{ position: 'fixed', inset: 0, pointerEvents: 'auto', zIndex: 20 }}>
+            {/* LeftSidebar always clickable */}
+            <div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 20 }}>
               <LeftSidebar />
             </div>
 
             {/* Panels that appear on the right */}
-            <div style={{ position: 'fixed', inset: 0, pointerEvents: 'auto', zIndex: 30 }}>
+            <div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 30 }}>
               <EnergyPanel />
               <AutomationBuilder />
             </div>
 
             {/* Right device/room panel */}
-            <div style={{ position: 'fixed', inset: 0, pointerEvents: 'auto', zIndex: 40 }}>
+            <div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 40 }}>
               <RightPanel />
             </div>
 
             {/* Quick camera controls */}
-            <div style={{ position: 'fixed', inset: 0, pointerEvents: 'auto', zIndex: 25 }}>
+            <div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 25 }}>
               <QuickControls />
             </div>
 
             {/* Overlays */}
-            <div style={{ position: 'fixed', inset: 0, pointerEvents: 'auto', zIndex: 50 }}>
+            <div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 50 }}>
               <NotificationsPanel />
               <SettingsPage />
             </div>
