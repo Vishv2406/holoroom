@@ -71,7 +71,12 @@ export function SceneCanvas() {
       camera={{ position: [0, 20, 22], fov: 55, near: 0.1, far: 200 }}
       shadows
       gl={{ antialias: true, toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.2 }}
-      style={{ background: 'transparent' }}
+      style={{ background: 'transparent', pointerEvents: 'auto' }}
+      onCreated={(state) => {
+        // Allow pointer events to pass through to UI when hovering over empty space
+        const canvas = state.gl.domElement;
+        canvas.style.touchAction = 'auto';
+      }}
     >
       {/* Background */}
       <color attach="background" args={['#060612']} />
