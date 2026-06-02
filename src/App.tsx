@@ -39,55 +39,57 @@ export default function App() {
       {/* Main app (renders underneath loading screen) */}
       <AnimatePresence>
         {!isLoading && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className="fixed inset-0"
-            style={{ pointerEvents: 'auto' }}
-          >
-            {/* 3D Canvas — full screen background with pointerEvents disabled */}
-            <div className="absolute inset-0" style={{ zIndex: 1, pointerEvents: 'none' }}>
+          <>
+            {/* 3D Canvas — full screen background FIRST (behind everything) */}
+            <div className="fixed inset-0" style={{ zIndex: 0, pointerEvents: 'none' }}>
               <SceneCanvas />
             </div>
 
-            {/* TopBar - Fixed at top with limited height */}
-            <div style={{ position: 'fixed', top: 0, left: 0, right: 0, height: '60px', zIndex: 50, pointerEvents: 'auto' }}>
-              <TopBar />
-            </div>
-            
-            {/* LeftSidebar - Fixed on left side */}
-            <div style={{ position: 'fixed', left: 0, top: '60px', bottom: 0, width: '280px', zIndex: 40, pointerEvents: 'auto' }}>
-              <LeftSidebar />
-            </div>
+            {/* All UI elements with HIGH z-index and pointerEvents enabled */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="fixed inset-0"
+              style={{ pointerEvents: 'auto', zIndex: 10, display: 'flex', flexDirection: 'column' }}
+            >
+              {/* TopBar */}
+              <div style={{ height: '60px', zIndex: 50, pointerEvents: 'auto', flexShrink: 0 }}>
+                <TopBar />
+              </div>
 
-            {/* Energy Panel - Positioned on the right of left sidebar */}
-            <div style={{ position: 'fixed', left: '280px', top: '60px', bottom: 0, zIndex: 45, pointerEvents: 'auto' }}>
-              <EnergyPanel />
-            </div>
+              {/* Main content area */}
+              <div style={{ display: 'flex', flex: 1, pointerEvents: 'auto', zIndex: 10 }}>
+                {/* LeftSidebar */}
+                <div style={{ width: '280px', zIndex: 40, pointerEvents: 'auto', flexShrink: 0 }}>
+                  <LeftSidebar />
+                </div>
 
-            {/* Automation Panel - Positioned on the right of left sidebar */}
-            <div style={{ position: 'fixed', left: '280px', top: '60px', bottom: 0, zIndex: 45, pointerEvents: 'auto' }}>
-              <AutomationBuilder />
-            </div>
+                {/* Center area for Energy/Automation panels */}
+                <div style={{ flex: 1, zIndex: 45, pointerEvents: 'auto', position: 'relative' }}>
+                  <EnergyPanel />
+                  <AutomationBuilder />
+                </div>
 
-            {/* Right Panel - Fixed on right side */}
-            <div style={{ position: 'fixed', right: 0, top: '60px', bottom: 0, zIndex: 50, pointerEvents: 'auto' }}>
-              <RightPanel />
-            </div>
+                {/* RightPanel */}
+                <div style={{ width: 'auto', zIndex: 50, pointerEvents: 'auto', flexShrink: 0 }}>
+                  <RightPanel />
+                </div>
+              </div>
+            </motion.div>
 
-            {/* Quick Controls - Bottom right corner */}
+            {/* Quick Controls - Bottom right */}
             <div style={{ position: 'fixed', bottom: '24px', right: '24px', zIndex: 30, pointerEvents: 'auto' }}>
               <QuickControls />
             </div>
 
-            {/* Notifications Panel - Top right corner */}
+            {/* Notifications Panel - Top right */}
             <div style={{ position: 'fixed', top: '68px', right: '14px', zIndex: 60, pointerEvents: 'auto' }}>
               <NotificationsPanel />
             </div>
 
-            {/* Settings Modal - Center of screen */}
-            <div style={{ position: 'fixed', inset: 0, zIndex: 65, pointerEvents: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            {/* Settings Modal - Center */}
+            <div style={{ position: 'fixed', inset: 0, zIndex: 65, pointerEvents: 'auto' }}>
               <SettingsPage />
             </div>
 
@@ -103,7 +105,7 @@ export default function App() {
                 💡 <span className="font-semibold text-cyan-400">Tip:</span> Click any device in 3D to control it • Drag to rotate • Scroll to zoom • Press ESC to close panels
               </div>
             </motion.div>
-          </motion.div>
+          </>
         )}
       </AnimatePresence>
     </div>
